@@ -1,0 +1,52 @@
+---
+# blog page must be named index.html and in its own folder to support pagination
+# https://jekyllrb.com/docs/pagination/
+layout: page
+title: Blog
+---
+<section class="list">
+
+	<div class="item ">
+		<a class="url" href="https://medium.com/@james_3093/the-dai-stablecoin-is-a-game-changer-for-ethereum-and-the-entire-cryptocurrency-ecosystem-13fb412d1e75" target="_blank">
+			<aside class="date"><time datetime="04-12-2018">Apr 12 2018</time></aside>
+			<h3 class="title">The Dai Stablecoin is a Game Changer for Ethereum and the Entire Cryptocurrency Ecosystem
+</h3>
+		</a>
+	</div>
+
+	<div class="item ">
+		<a class="url" href="https://hackernoon.com/securely-generating-and-storing-an-ethereum-wallet-907bcbd8e5ae" target="_blank">
+			<aside class="date"><time datetime="08-11-2017">Aug 11 2017</time></aside>
+			<h3 class="title">Securely Generating and Storing an Ethereum Wallet</h3>
+		</a>
+	</div>
+
+	<div class="item ">
+		<a class="url" href="https://medium.com/@james_3093/ethereum-erc20-tokens-explained-9f7f304055df" target="_blank">
+			<aside class="date"><time datetime="07-21-2017">Jul 21 2017</time></aside>
+			<h3 class="title">Ethereum ERC20 Tokens Explained</h3>
+		</a>
+	</div>
+
+	{% if site.posts.size == 0 %}
+		<p class="text-center">Nothing published yet!</p>
+	{% elsif site.paginate %}
+		{% for post in paginator.posts %}
+			{% if post.category == 'blog' %}
+				{% if post.hidden != true %}
+					{% include blog-post.html %}
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+
+		{% include pagination.html%}
+	{% else %}
+		{% for post in site.posts %}
+			{% if post.category == 'blog' %}
+				{% if post.hidden != true %}
+					{% include blog-post.html %}
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+</section>
